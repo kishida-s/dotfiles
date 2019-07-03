@@ -17,9 +17,11 @@ set showcmd
 " 行番号を表示
 set number
 " 現在の行を強調表示
-"set cursorline
+set cursorline
 " 現在の行を強調表示（縦）
 "set cursorcolumn
+" カーソルの左右移動で行末から次の行の行頭への移動が可能になる
+set whichwrap=b,s,h,l,<,>,[,],~
 " 行末の1文字先までカーソルを移動できるように
 set virtualedit=onemore
 " インデントはスマートインデント
@@ -39,6 +41,8 @@ nnoremap j gj
 nnoremap k gk
 " 一行の文字数が多くても全て描画する
 set display=lastline
+" コマンドモードの補完
+set wildmenu
 " 補完メニューの高さ
 set pumheight=10
 " カラースキーム
@@ -79,3 +83,17 @@ nnoremap Y y$
 nnoremap + <C-a>
 " デクリメントのマッピング
 nnoremap - <C-x>
+
+" ペースト時インデント設定
+if &term =~ "xterm"
+    let &t_SI .= "\e[?2004h"
+    let &t_EI .= "\e[?2004l"
+    let &pastetoggle = "\e[201~"
+
+    function XTermPasteBegin(ret)
+        set paste
+        return a:ret
+    endfunction
+
+    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+endif
