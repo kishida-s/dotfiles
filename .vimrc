@@ -18,16 +18,12 @@ set showcmd
 set number
 " 現在の行を強調表示
 set cursorline
-" 現在の行を強調表示（縦）
-"set cursorcolumn
 " カーソルの左右移動で行末から次の行の行頭への移動が可能になる
 set whichwrap=b,s,h,l,<,>,[,],~
 " 行末の1文字先までカーソルを移動できるように
 set virtualedit=onemore
 " インデントはスマートインデント
 set smartindent
-" ビープ音を可視化
-set visualbell
 " 括弧入力時の対応する括弧を表示
 set showmatch
 " その時間
@@ -48,6 +44,7 @@ set pumheight=10
 " カラースキーム
 syntax enable
 set background=dark
+let g:solarized_termcolors=256
 colorscheme solarized
 
 
@@ -97,3 +94,13 @@ if &term =~ "xterm"
 
     inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
 endif
+
+" ターミナルモードのマッピング
+tnoremap <C-[> <C-W>N
+tnoremap <C-c> <C-W>N
+
+" 新しいウィンドウを右に開く
+set splitright
+
+command Terminal vsplit | terminal ++curwin
+command Term vsplit | terminal ++curwin
