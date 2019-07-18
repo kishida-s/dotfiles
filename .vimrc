@@ -11,7 +11,8 @@ set autoread
 set hidden
 " 入力中のコマンドをステータスに表示する
 set showcmd
-
+" backspaceの設定
+set backspace=2
 
 " 見た目系
 " 行番号を表示
@@ -97,7 +98,6 @@ endif
 
 " ターミナルモードのマッピング
 tnoremap <C-[> <C-W>N
-tnoremap <C-c> <C-W>N
 
 " 新しいウィンドウを右に開く
 set splitright
